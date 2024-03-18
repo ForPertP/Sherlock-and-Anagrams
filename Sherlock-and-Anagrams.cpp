@@ -14,7 +14,25 @@ string rtrim(const string &);
 
 int sherlockAndAnagrams2(string s)
 {
-    int result = 1;
+    int result = 0;
+    std::map<vector<int>, int> frequencyMap;
+
+    for (int i = 0; i < s.size(); ++i)
+    {
+        vector<int> arr(26, 0);
+        
+        for (int j = i; j < s.size(); ++j)
+        {
+            arr[s[j] - 'a']++;
+            frequencyMap[arr]++;
+        }
+    }
+
+    for (const auto& [charFrequency, count] : frequencyMap)
+    {
+        result += (count * (count - 1)) / 2;
+    }
+
     return result;
 }
 
