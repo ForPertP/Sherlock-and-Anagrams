@@ -12,6 +12,31 @@ string rtrim(const string &);
  * The function accepts STRING s as parameter.
  */
 
+int sherlockAndAnagrams(string s)
+{
+    int result = 0;
+    std::unordered_map<string, int> frequencyMap;
+
+    for (int i = 0; i < s.size(); ++i)
+    {
+        for (int j = i; j < s.size(); ++j)
+        {
+            string sub = s.substr(i, j - i + 1);
+            sort(sub.begin(), sub.end());
+            frequencyMap[sub]++;
+        }
+    }
+
+    for (const auto &pair : frequencyMap)
+    {
+        int count = pair.second;
+        result += (count * (count - 1)) / 2;
+    }
+
+    return result;
+}
+
+
 int sherlockAndAnagrams2(string s)
 {
     int result = 0;
