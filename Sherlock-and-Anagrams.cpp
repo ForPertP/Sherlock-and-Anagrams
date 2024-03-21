@@ -12,7 +12,7 @@ string rtrim(const string &);
  * The function accepts STRING s as parameter.
  */
 
-int sherlockAndAnagrams(string s)
+int sherlockAndAnagrams_ByString(string s)
 {
     int result = 0;
     std::unordered_map<string, int> frequencyMap;
@@ -37,7 +37,7 @@ int sherlockAndAnagrams(string s)
 }
 
 
-int sherlockAndAnagrams2(string s)
+int sherlockAndAnagrams_ByVector(string s)
 {
     int result = 0;
     std::map<vector<int>, int> frequencyMap;
@@ -60,6 +60,15 @@ int sherlockAndAnagrams2(string s)
 
     return result;
 }
+
+
+int sherlockAndAnagrams(string s)
+{
+    if (s.size() < 50)
+        return sherlockAndAnagrams_ByString(s);
+    else
+        return sherlockAndAnagrams_ByVector(s);
+}        
 
 
 int main()
