@@ -21,12 +21,14 @@ class Result
      * The function is expected to return an INTEGER.
      * The function accepts STRING s as parameter.
      */
-
+    
     public static int sherlockAndAnagrams(string s)
     {
-
+        if (s.Length < 50)
+            return SherlockAndAnagramsByString(s);
+        else
+            return SherlockAndAnagramsByArray(s);
     }
-
 }
 
 class Solution
