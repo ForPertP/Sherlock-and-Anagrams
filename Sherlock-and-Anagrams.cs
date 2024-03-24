@@ -14,14 +14,64 @@ using System;
 
 class Result
 {
+    private static int SherlockAndAnagramsByString(string s)
+    {
+        int result = 0;
+        Dictionary<string, int> frequencyMap = new Dictionary<string, int>();
 
-    /*
-     * Complete the 'sherlockAndAnagrams' function below.
-     *
-     * The function is expected to return an INTEGER.
-     * The function accepts STRING s as parameter.
-     */
-    
+        for (int i = 0; i < s.Length; ++i)
+        {
+            for (int j = i; j < s.Length; ++j)
+            {
+                string sub = s.Substring(i, j - i + 1);
+                char[] subArray = sub.ToCharArray();
+                Array.Sort(subArray);
+                string sortedSub = new string(subArray);
+                if (frequencyMap.ContainsKey(sortedSub))
+                    frequencyMap[sortedSub]++;
+                else
+                    frequencyMap[sortedSub] = 1;
+            }
+        }
+
+        foreach (var pair in frequencyMap)
+        {
+            int count = pair.Value;
+            result += (count * (count - 1)) / 2;
+        }
+
+        return result;
+    }
+
+    private static int SherlockAndAnagramsByArray(string s)
+    {
+        int result = 0;
+        Dictionary<string, int> frequencyMap = new Dictionary<string, int>();
+
+        for (int i = 0; i < s.Length; ++i)
+        {
+            int[] arr = new int[26];
+
+            for (int j = i; j < s.Length; ++j)
+            {
+                arr[s[j] - 'a']++;
+                string charFrequency = string.Join(",", arr);
+                if (frequencyMap.ContainsKey(charFrequency))
+                    frequencyMap[charFrequency]++;
+                else
+                    frequencyMap[charFrequency] = 1;
+            }
+        }
+
+        foreach (var pair in frequencyMap)
+        {
+            int count = pair.Value;
+            result += (count * (count - 1)) / 2;
+        }
+
+        return result;
+    }
+
     public static int sherlockAndAnagrams(string s)
     {
         if (s.Length < 50)
