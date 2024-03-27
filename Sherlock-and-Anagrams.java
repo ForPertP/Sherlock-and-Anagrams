@@ -20,10 +20,12 @@ class Result {
      */
 
     public static int sherlockAndAnagrams(String s) {
-    // Write your code here
-
+        if (s.length() < 50) {
+            return sherlockAndAnagrams_ByString(s);
+        } else {
+            return sherlockAndAnagrams_ByArray(s);
+        }
     }
-
 }
 
 public class Solution {
