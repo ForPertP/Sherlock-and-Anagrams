@@ -19,6 +19,30 @@ class Result {
      * The function accepts STRING s as parameter.
      */
 
+private static int sherlockAndAnagrams_ByString(String s) {
+        int result = 0;
+        Map<String, Integer> frequencyMap = new HashMap<>();
+
+        for (int i = 0; i < s.length(); ++i) {
+            for (int j = i; j < s.length(); ++j) {
+                char[] subChars = s.substring(i, j + 1).toCharArray();
+                Arrays.sort(subChars);
+                String sub = new String(subChars);
+                frequencyMap.put(sub, frequencyMap.getOrDefault(sub, 0) + 1);
+            }
+        }
+
+        for (int count : frequencyMap.values()) {
+            result += (count * (count - 1)) / 2;
+        }
+
+        return result;
+    }
+
+    private static int sherlockAndAnagrams_ByArray(String s) {
+        return result;
+    }
+
     public static int sherlockAndAnagrams(String s) {
         if (s.length() < 50) {
             return sherlockAndAnagrams_ByString(s);
