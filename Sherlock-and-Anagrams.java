@@ -40,6 +40,23 @@ private static int sherlockAndAnagrams_ByString(String s) {
     }
 
     private static int sherlockAndAnagrams_ByArray(String s) {
+        int result = 0;
+        Map<String, Integer> frequencyMap = new HashMap<>();
+
+        for (int i = 0; i < s.length(); ++i) {
+            int[] arr = new int[26];
+
+            for (int j = i; j < s.length(); ++j) {
+                arr[s.charAt(j) - 'a']++;
+                String charFrequency = Arrays.toString(arr);
+                frequencyMap.put(charFrequency, frequencyMap.getOrDefault(charFrequency, 0) + 1);
+            }
+        }
+
+        for (int count : frequencyMap.values()) {
+            result += (count * (count - 1)) / 2;
+        }
+
         return result;
     }
 
